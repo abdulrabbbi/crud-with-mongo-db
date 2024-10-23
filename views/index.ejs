@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Messages</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+      .chat-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .message {
+        margin: 10px 0;
+        padding: 10px 15px;
+        border-radius: 20px;
+        max-width: 80%;
+        position: relative;
+        word-wrap: break-word;
+      }
+      .from {
+        background-color: #d1f7c4;
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+      }
+      .to {
+        background-color: #daf0f9;
+        align-self: flex-end;
+        border-bottom-right-radius: 5px;
+      }
+      .sender {
+        font-weight: bold;
+      }
+      .timestamp {
+        font-size: 0.8em;
+        color: #666;
+        margin-top: 5px;
+      }
+      .chat-bubble {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+      }
+      button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #d1f7c4;
+        font-weight: 900;
+        font-size: 1rem;
+      }
+      .form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>All chats</h1>
+    <form action="/chat/new" method="get">
+      <button>Create new chat</button>
+    </form>
+    <br />
+    <div class="chat-container">
+      <% messages.forEach(function(message) { %>
+      <div class="chat-bubble <%= message.from === 'malika' ? 'from' : 'to' %>">
+        <div class="message">
+          <div class="sender"><%= message.from %> to <%= message.to %></div>
+          <div class="text"><%= message.message %></div>
+          <div class="timestamp"><%= message.date.toLocaleString() %></div>
+          <br>
+          <div class="form">
+            <form action="/chat/<%=message.id%>/edit" method="get">
+              <button>Edits</button>
+            </form>
+            <form action="/chat/<%= message.id  %>?_method=DELETE"  method="post">
+
+              <button>Delete</button>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </body>
+</html>

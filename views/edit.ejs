@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>new</title>
+    <style>
+      .main {
+        display: flex;
+        flex-direction: column;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .form-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+      }
+      .form-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 16px;
+        background-color: #fafafa;
+      }
+      input[type="text"]:focus {
+        border-color: #8bc34a;
+        outline: none;
+        background-color: #eafbea;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        background-color: #8bc34a;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #6fa12b;
+      }
+      @media (max-width: 500px) {
+        .form-container {
+          padding: 10px;
+        }
+        input[type="text"],
+        button {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div><h1>update  post</h1></div>
+      <div class="form">
+        <form action="/chat/<%=chat._id  %>/edit?_method=put" method="post">
+          <input
+            type="text"
+            name="from"
+            id="from"
+            value="<%=chat.from %>"
+            readonly
+          />
+          <input
+            type="text"
+            name="message"
+            id="message"
+            placeholder="your new message"
+          />
+          <input type="text" name="to" id="to" value="<%= chat.to %>" readonly/>
+          <button>submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
